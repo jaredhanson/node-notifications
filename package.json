@@ -1,0 +1,13 @@
+{
+  "name": "notifications",
+  "version": "0.1.0",
+  "description": "A mechanism for dispatching notifications within a Node.js program.",
+  "author": "Jared Hanson <jaredhanson@gmail.com> (http://www.jaredhanson.net/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/jaredhanson/node-notifications.git"
+  },
+  "main": "./lib/notifications",
+  "engines": { "node": ">= 0.4.0" },
+  "keywords": ["notifications", "events", "pubsub", "publisher", "subscriber", "observer", "messaging", "queue"]
+}
