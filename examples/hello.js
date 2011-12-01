@@ -1,9 +1,8 @@
-require.paths.unshift("../lib");
 var notifications = require('notifications');
 
 
-notifications.defaultCenter().addObserver('hello', function(notif) {
-  console.log('Hello!');
+notifications.addObserver('hello', function(notif) {
+  console.log('Hello ' + notif.info.name + '!');
 });
 
-notifications.defaultCenter().post('hello', null, {});
+notifications.post('hello', null, { name: 'World' });
