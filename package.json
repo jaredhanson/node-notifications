@@ -1,6 +1,6 @@
 {
   "name": "notifications",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A mechanism for dispatching notifications within a Node.js program.",
   "author": "Jared Hanson <jaredhanson@gmail.com> (http://www.jaredhanson.net/)",
   "repository": {
