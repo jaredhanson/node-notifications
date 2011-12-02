@@ -31,56 +31,56 @@ module.exports = {
   'test add observer for notification with a particular name from a specific sender': function() {
     var nc = new NotificationCenter();
     nc.addObserver('notification', this, function(){});
-    assert.equal(nc._observers[0][0], 'notification');
-    assert.equal(nc._observers[0][1], this);
-    assert.equal(typeof nc._observers[0][2], 'function');
+    assert.equal(nc._entries[0][0], 'notification');
+    assert.equal(nc._entries[0][1], this);
+    assert.equal(typeof nc._entries[0][2], 'function');
   },
   
   'test add observer for notifications with a particular name from any sender': function() {
     var nc = new NotificationCenter();
     
     nc.addObserver('notification', function(){});
-    assert.equal(nc._observers[0][0], 'notification');
-    assert.equal(nc._observers[0][1], null);
-    assert.equal(typeof nc._observers[0][2], 'function');
+    assert.equal(nc._entries[0][0], 'notification');
+    assert.equal(nc._entries[0][1], null);
+    assert.equal(typeof nc._entries[0][2], 'function');
     
     nc.addObserver('notification', null, function(){});
-    assert.equal(nc._observers[1][0], 'notification');
-    assert.equal(nc._observers[1][1], null);
-    assert.equal(typeof nc._observers[1][2], 'function');
+    assert.equal(nc._entries[1][0], 'notification');
+    assert.equal(nc._entries[1][1], null);
+    assert.equal(typeof nc._entries[1][2], 'function');
   },
   
   'test add observer for notifications from a specific sender': function() {
     var nc = new NotificationCenter();
     
     nc.addObserver(this, function(){});
-    assert.equal(nc._observers[0][0], null);
-    assert.equal(nc._observers[0][1], this);
-    assert.equal(typeof nc._observers[0][2], 'function');
+    assert.equal(nc._entries[0][0], null);
+    assert.equal(nc._entries[0][1], this);
+    assert.equal(typeof nc._entries[0][2], 'function');
     
     nc.addObserver(null, this, function(){});
-    assert.equal(nc._observers[1][0], null);
-    assert.equal(nc._observers[1][1], this);
-    assert.equal(typeof nc._observers[1][2], 'function');
+    assert.equal(nc._entries[1][0], null);
+    assert.equal(nc._entries[1][1], this);
+    assert.equal(typeof nc._entries[1][2], 'function');
   },
   
   'test add observer for all notifications': function() {
     var nc = new NotificationCenter();
     
     nc.addObserver(function(){});
-    assert.equal(nc._observers[0][0], null);
-    assert.equal(nc._observers[0][1], null);
-    assert.equal(typeof nc._observers[0][2], 'function');
+    assert.equal(nc._entries[0][0], null);
+    assert.equal(nc._entries[0][1], null);
+    assert.equal(typeof nc._entries[0][2], 'function');
     
     nc.addObserver(null, function(){});
-    assert.equal(nc._observers[1][0], null);
-    assert.equal(nc._observers[1][1], null);
-    assert.equal(typeof nc._observers[1][2], 'function');
+    assert.equal(nc._entries[1][0], null);
+    assert.equal(nc._entries[1][1], null);
+    assert.equal(typeof nc._entries[1][2], 'function');
     
     nc.addObserver(null, null, function(){});
-    assert.equal(nc._observers[2][0], null);
-    assert.equal(nc._observers[2][1], null);
-    assert.equal(typeof nc._observers[2][2], 'function');
+    assert.equal(nc._entries[2][0], null);
+    assert.equal(nc._entries[2][1], null);
+    assert.equal(typeof nc._entries[2][2], 'function');
   },
   
   'test remove observer for notification with a particular name from a specific sender': function() {
@@ -90,13 +90,13 @@ module.exports = {
     var f = function(){};
     nc.addObserver('notification', s1, f);
     nc.addObserver('notification', s2, f);
-    assert.length(nc._observers, 2);
+    assert.length(nc._entries, 2);
     
     nc.removeObserver('notification', s1, f);
-    assert.length(nc._observers, 1);
-    assert.equal(nc._observers[0][0], 'notification');
-    assert.equal(nc._observers[0][1], s2);
-    assert.equal(nc._observers[0][2], f);
+    assert.length(nc._entries, 1);
+    assert.equal(nc._entries[0][0], 'notification');
+    assert.equal(nc._entries[0][1], s2);
+    assert.equal(nc._entries[0][2], f);
   },
   
   'test remove observer for notifications with a particular name from any sender': function() {
@@ -107,13 +107,13 @@ module.exports = {
     nc.addObserver('notification-1', s1, f);
     nc.addObserver('notification-1', s2, f);
     nc.addObserver('notification-2', s2, f);
-    assert.length(nc._observers, 3);
+    assert.length(nc._entries, 3);
     
     nc.removeObserver('notification-1', f);
-    assert.length(nc._observers, 1);
-    assert.equal(nc._observers[0][0], 'notification-2');
-    assert.equal(nc._observers[0][1], s2);
-    assert.equal(nc._observers[0][2], f);
+    assert.length(nc._entries, 1);
+    assert.equal(nc._entries[0][0], 'notification-2');
+    assert.equal(nc._entries[0][1], s2);
+    assert.equal(nc._entries[0][2], f);
   },
   
   'test remove observer for notifications from a specific sender': function() {
@@ -124,13 +124,13 @@ module.exports = {
     nc.addObserver('notification-1', s1, f);
     nc.addObserver('notification-1', s2, f);
     nc.addObserver('notification-2', s2, f);
-    assert.length(nc._observers, 3);
+    assert.length(nc._entries, 3);
     
     nc.removeObserver(s2, f);
-    assert.length(nc._observers, 1);
-    assert.equal(nc._observers[0][0], 'notification-1');
-    assert.equal(nc._observers[0][1], s1);
-    assert.equal(nc._observers[0][2], f);
+    assert.length(nc._entries, 1);
+    assert.equal(nc._entries[0][0], 'notification-1');
+    assert.equal(nc._entries[0][1], s1);
+    assert.equal(nc._entries[0][2], f);
   },
   
   'test remove observer for all notifications': function() {
@@ -143,13 +143,13 @@ module.exports = {
     nc.addObserver('notification-1', s1, f1);
     nc.addObserver('notification-2', s2, f1);
     nc.addObserver('notification-3', s3, f2);
-    assert.length(nc._observers, 3);
+    assert.length(nc._entries, 3);
     
     nc.removeObserver(f1);
-    assert.length(nc._observers, 1);
-    assert.equal(nc._observers[0][0], 'notification-3');
-    assert.equal(nc._observers[0][1], s3);
-    assert.equal(nc._observers[0][2], f2);
+    assert.length(nc._entries, 1);
+    assert.equal(nc._entries[0][0], 'notification-3');
+    assert.equal(nc._entries[0][1], s3);
+    assert.equal(nc._entries[0][2], f2);
   },
   
   'test observe notification with a particular name from a specific sender' : function() {
