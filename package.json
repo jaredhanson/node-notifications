@@ -7,7 +7,7 @@
     "type": "git",
     "url": "http://github.com/jaredhanson/node-notifications.git"
   },
-  "main": "./lib/notifications/index",
+  "main": "index",
   "devDependencies": {
     "expresso": "0.9.x"
   },
