@@ -1,6 +1,6 @@
 var assert = require('assert');
-var NotificationCenter = require('notifications/notificationcenter');
-var Notification = require('notifications/notification');
+var NotificationCenter = require('notificationcenter');
+var Notification = require('notification');
 
 
 /* Sender */

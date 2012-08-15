@@ -1,5 +1,5 @@
 var assert = require('assert');
-var Notification = require('notifications/notification');
+var Notification = require('notification');
 
 
 module.exports = {
