@@ -28,6 +28,12 @@ Observer.prototype.observe = function(name, object) {
 
 module.exports = {
   
+  'test aliases': function() {
+    var nc = new NotificationCenter();
+    assert.equal(nc.on, nc.addObserver);
+    assert.equal(nc.off, nc.removeObserver);
+  },
+  
   'test add observer for notification with a particular name from a specific sender': function() {
     var nc = new NotificationCenter();
     nc.addObserver('notification', this, function(){});
