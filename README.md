@@ -71,6 +71,13 @@ Notifications are only dispatched to observers registered with the
 instances allows notifications to be contained within subsystems of the
 application.
 
+## Tests
+
+    $ npm install
+    $ make test
+
+[![Build Status](https://secure.travis-ci.org/jaredhanson/node-notifications.png)](http://travis-ci.org/jaredhanson/node-notifications)
+
 ## Credits
 
   - [Jared Hanson](http://github.com/jaredhanson)

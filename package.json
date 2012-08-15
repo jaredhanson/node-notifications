@@ -11,6 +11,9 @@
   "devDependencies": {
     "expresso": "0.9.x"
   },
+  "scripts": {
+    "test": "NODE_PATH=lib node_modules/.bin/expresso test/*.test.js"
+  },
   "engines": { "node": ">= 0.4.0" },
   "keywords": ["notifications", "events", "pubsub", "publish", "subscribe", "observer"]
 }
