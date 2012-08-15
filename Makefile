@@ -1,5 +1,5 @@
 NODE = node
-TEST = expresso
+TEST = ./node_modules/.bin/expresso
 TESTS ?= test/*.test.js
 
 test:

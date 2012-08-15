@@ -90,10 +90,10 @@ module.exports = {
     var f = function(){};
     nc.addObserver('notification', s1, f);
     nc.addObserver('notification', s2, f);
-    assert.length(nc._entries, 2);
+    assert.equal(nc._entries.length, 2);
     
     nc.removeObserver('notification', s1, f);
-    assert.length(nc._entries, 1);
+    assert.equal(nc._entries.length, 1);
     assert.equal(nc._entries[0][0], 'notification');
     assert.equal(nc._entries[0][1], s2);
     assert.equal(nc._entries[0][2], f);
@@ -107,10 +107,10 @@ module.exports = {
     nc.addObserver('notification-1', s1, f);
     nc.addObserver('notification-1', s2, f);
     nc.addObserver('notification-2', s2, f);
-    assert.length(nc._entries, 3);
+    assert.equal(nc._entries.length, 3);
     
     nc.removeObserver('notification-1', f);
-    assert.length(nc._entries, 1);
+    assert.equal(nc._entries.length, 1);
     assert.equal(nc._entries[0][0], 'notification-2');
     assert.equal(nc._entries[0][1], s2);
     assert.equal(nc._entries[0][2], f);
@@ -124,10 +124,10 @@ module.exports = {
     nc.addObserver('notification-1', s1, f);
     nc.addObserver('notification-1', s2, f);
     nc.addObserver('notification-2', s2, f);
-    assert.length(nc._entries, 3);
+    assert.equal(nc._entries.length, 3);
     
     nc.removeObserver(s2, f);
-    assert.length(nc._entries, 1);
+    assert.equal(nc._entries.length, 1);
     assert.equal(nc._entries[0][0], 'notification-1');
     assert.equal(nc._entries[0][1], s1);
     assert.equal(nc._entries[0][2], f);
@@ -143,10 +143,10 @@ module.exports = {
     nc.addObserver('notification-1', s1, f1);
     nc.addObserver('notification-2', s2, f1);
     nc.addObserver('notification-3', s3, f2);
-    assert.length(nc._entries, 3);
+    assert.equal(nc._entries.length, 3);
     
     nc.removeObserver(f1);
-    assert.length(nc._entries, 1);
+    assert.equal(nc._entries.length, 1);
     assert.equal(nc._entries[0][0], 'notification-3');
     assert.equal(nc._entries[0][1], s3);
     assert.equal(nc._entries[0][2], f2);
@@ -160,9 +160,9 @@ module.exports = {
     o.observe('notification', s1);
     
     s2.postNotification('notification', { foo: 'baz' });
-    assert.length(o.observed, 0);
+    assert.equal(o.observed.length, 0);
     s1.postNotification('notification', { foo: 'bar' });
-    assert.length(o.observed, 1);
+    assert.equal(o.observed.length, 1);
   },
   
   'test observe notification with a particular name from any sender' : function() {
@@ -173,9 +173,9 @@ module.exports = {
     o.observe('notification', null);
     
     s2.postNotification('notification', { foo: 'baz' });
-    assert.length(o.observed, 1);
+    assert.equal(o.observed.length, 1);
     s1.postNotification('notification', { foo: 'bar' });
-    assert.length(o.observed, 2);
+    assert.equal(o.observed.length, 2);
   },
   
   'test observe notifications from a specific sender' : function() {
@@ -186,11 +186,11 @@ module.exports = {
     o.observe(null, s1);
 
     s2.postNotification('notification', { foo: 'baz' });
-    assert.length(o.observed, 0);
+    assert.equal(o.observed.length, 0);
     s1.postNotification('notification-1', { item: '1' });
-    assert.length(o.observed, 1);
+    assert.equal(o.observed.length, 1);
     s1.postNotification('notification-2', { item: '2' });
-    assert.length(o.observed, 2);
+    assert.equal(o.observed.length, 2);
   },
   
   'test observe all notifications' : function() {
@@ -201,9 +201,9 @@ module.exports = {
     o.observe(null, null);
     
     s1.postNotification('notification-1', { item: '1' });
-    assert.length(o.observed, 1);
+    assert.equal(o.observed.length, 1);
     s2.postNotification('notification-2', { item: '2' });
-    assert.length(o.observed, 2);
+    assert.equal(o.observed.length, 2);
   },
   
   'test post notification with name object and info' : function() {
